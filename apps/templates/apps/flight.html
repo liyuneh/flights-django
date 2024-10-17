@@ -1,0 +1,58 @@
+{%extends 'apps/base.html' %} {%block title %} Flight Content {%endblock%}
+{%block body %}
+<h1>Flight {{ flight.id }}</h1>
+<ul>
+  <li>Origin: {{ flight.origin }}</li>
+  <li>Destination: {{ flight.destination }}</li>
+  <li>duration: {{flight.duration}}</li>
+</ul>
+<h2>Passengers</h2>
+<ul>
+  {% for passenger in passengers%}
+  <li>{{passenger}}</li>
+  {%empty %}
+  <li>No passenger</li>
+  {%endfor %}
+</ul>
+
+<h2>Foods</h2>
+<ul>
+  {% for food in food%}
+  <li>{{food}}</li>
+  {%empty %}
+  <li>No food</li>  
+  {%endfor %}
+</ul>
+<hr />
+<h3>Add a Passenger</h3>
+{% if non_passengers %}
+<form action="{% url 'book' flight.id%}" method="post">
+  {%csrf_token %}
+  <select name="passenger">
+    {% for passenger in non_passengers%}
+    <option value="{{passenger.id }}">{{passenger}}</option>
+    {%endfor%}
+    <input type="submit" value="Book Flight" />
+  </select>
+</form>
+{%else %}
+<div>No passengers to Add.</div>
+{%endif %}
+
+<h3>Add Food</h3>
+{% if non_food %}
+<form action="{% url 'food' flight.id%}" method="post">
+  {%csrf_token %}
+  <select name="food">
+    {% for food in non_food%}
+    <option value="{{food.id }}">{{food}}</option>
+    {%endfor%}
+    <input type="submit" value="Add Food" />
+  </select>
+</form>
+{%else %}
+<div>No food to Add.</div>
+{%endif %}
+
+<li><a href="{%url 'index'%}">back to listing</a></li>
+{%endblock%}
