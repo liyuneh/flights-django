@@ -1,58 +1,109 @@
-{%extends 'apps/base.html' %} {%block title %} Flight Content {%endblock%}
-{%block body %}
+{% extends 'apps/base.html' %}
+{%load static%}
+{% block title %} Flight Content {% endblock %}
+
+{% block body %}
 <h1>Flight {{ flight.id }}</h1>
-<ul>
+<ol>
   <li>Origin: {{ flight.origin }}</li>
   <li>Destination: {{ flight.destination }}</li>
-  <li>duration: {{flight.duration}}</li>
-</ul>
+  <li>Duration: {{ flight.duration }}</li>
+</ol>
+
 <h2>Passengers</h2>
 <ul>
-  {% for passenger in passengers%}
-  <li>{{passenger}}</li>
-  {%empty %}
-  <li>No passenger</li>
-  {%endfor %}
+  {% if passengers %}
+    {% for passenger in passengers %}
+      <li>{{ passenger }}</li>
+    {% endfor %}
+  {% else %}
+    <li>No passengers</li>
+  {% endif %}
 </ul>
 
 <h2>Foods</h2>
 <ul>
-  {% for food in food%}
-  <li>{{food}}</li>
-  {%empty %}
-  <li>No food</li>  
-  {%endfor %}
+  {% if food %}
+    {% for food_item in food %}
+      <li>{{ food_item }}</li>
+    {% endfor %}
+  {% else %}
+    <li>No food</li>
+  {% endif %}
 </ul>
+
 <hr />
-<h3>Add a Passenger</h3>
-{% if non_passengers %}
-<form action="{% url 'book' flight.id%}" method="post">
-  {%csrf_token %}
-  <select name="passenger">
-    {% for passenger in non_passengers%}
-    <option value="{{passenger.id }}">{{passenger}}</option>
-    {%endfor%}
-    <input type="submit" value="Book Flight" />
-  </select>
-</form>
-{%else %}
-<div>No passengers to Add.</div>
-{%endif %}
 
-<h3>Add Food</h3>
-{% if non_food %}
-<form action="{% url 'food' flight.id%}" method="post">
-  {%csrf_token %}
-  <select name="food">
-    {% for food in non_food%}
-    <option value="{{food.id }}">{{food}}</option>
-    {%endfor%}
-    <input type="submit" value="Add Food" />
-  </select>
-</form>
-{%else %}
-<div>No food to Add.</div>
-{%endif %}
+<div class="flight">
+  <h3>Add a Passenger</h3>
+  {% if non_passengers %}
+    <form action="{% url 'book' flight.id %}" method="post">
+      {% csrf_token %}
+      <select name="passenger">
+        {% for passenger in non_passengers %}
+          <option value="{{ passenger.id }}">{{ passenger }}</option>
+        {% endfor %}
+      </select>
+      <input type="hidden" name="action" value="add">
+      <input type="submit" value="Add Passenger" />
+    </form>
+  {% else %}
+    <div>No passenger to add.</div>
+  {% endif %}
 
-<li><a href="{%url 'index'%}">back to listing</a></li>
-{%endblock%}
+  <h3>Remove Passenger</h3>
+  {% if passengers %}
+    <form action="{% url 'book' flight.id %}" method="post">
+      {% csrf_token %}
+      <select name="passenger">
+        {% for passenger in passengers %}
+          <option value="{{ passenger.id }}">{{ passenger }}</option>
+        {% endfor %}
+      </select>
+      <input type="hidden" name="action" value="remove">
+      <input type="submit" value="Remove Passenger" />
+    </form>
+  {% else %}
+    <div>No passenger to remove.</div>
+  {% endif %}
+</div>
+
+<div class="flight">
+  <h3>Add Food</h3>
+  {% if non_food %}
+    <form action="{% url 'food' flight.id %}" method="post">
+      {% csrf_token %}
+      <select name="food">
+        {% for food_item in non_food %}
+          <option value="{{ food_item.id }}">{{ food_item }}</option>
+        {% endfor %}
+      </select>
+      <input type="hidden" name="action" value="add">
+      <input type="submit" value="Add Food" />
+    </form>
+  {% else %}
+    <div>No food to add.</div>
+  {% endif %}
+
+  <h3>Remove Food</h3>
+  {% if food %}
+    <form action="{% url 'food' flight.id %}" method="post">
+      {% csrf_token %}
+      <select name="food">
+        {% for food_item in food %}
+          <option value="{{ food_item.id }}">{{ food_item }}</option>
+        {% endfor %}
+      </select>
+      <input type="hidden" name="action" value="remove">
+      <input type="submit" value="Remove Food" />
+    </form>
+  {% else %}
+    <div>No food to remove.</div>
+  {% endif %}
+</div>
+
+<hr />
+
+<li><a href="{% url 'index' %}">Back to listing</a></li>
+
+{% endblock %}
