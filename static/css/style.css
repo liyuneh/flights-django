@@ -1,4 +1,155 @@
-body{
-    background-color:aqua;
-    font-size:large;
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin-bottom: 4px;
+  padding: 8px;
+  background-image: url("https://th.bing.com/th/id/R.9e91225e05293dd4844a54b7afdefde1?rik=VN86bWHNmwJEGQ&pid=ImgRaw&r=0");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  margin: 0 auto 4px auto;
+}
+
+h1 {
+  color: #0056b3;
+  text-align: left;
+  font-size: large;
+  margin-bottom: 10px;
+}
+
+h2,
+h3 {
+  color: #333;
+  text-align: left;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+ol {
+  list-style-type: none;
+  padding: 10px 10px;
+  margin: 20px 0 20px;
+  text-align: center;
+}
+
+ol li {
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: white;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+ol li:hover {
+  background-color: rgb(79, 79, 109);
+  transform: translateY(-2px);
+}
+
+.flight {
+  background-image: url("https://www.edf.org/sites/default/files/facebook_thumb/GettyImages-531386521-plane-sunlight-1200x630.jpg");
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: box-shadow 0.3s;
+}
+
+.flight:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#book {
+  border-top: 3px solid #0056b3;
+  background-image: url("https://www.bacancytechnology.com/img/solution/flight-booking-2.jpg");
+  border-radius: 4px;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 30px 20px;
+  margin: 20px 0;
+  color: #fff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+select,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="submit"] {
+  padding: 12px 20px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+input[type="submit"]:hover {
+  background-color: green;
+  transform: scale(1.05);
+}
+
+div {
+  color: #666;
+  font-style: italic;
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+
+li a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 20px;
+  transition: color 0.3s, transform 0.2s;
+}
+
+li a:hover {
+  color: #003d7a;
+  transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-size: 1.5em;
+  }
+
+  .flight,
+  #book {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  form {
+    gap: 10px;
+  }
+
+  input[type="submit"] {
+    font-size: 14px;
+  }
 }

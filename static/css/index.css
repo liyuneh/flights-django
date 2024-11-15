@@ -1,0 +1,59 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-image:url('https://th.bing.com/th/id/OIP.Q_TeE8OqMe4R-DZPPFzHsAHaE7?rs=1&pid=ImgDetMain');
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size:large;
+}
+
+/* Flight List Styling */
+ol {
+  list-style-type: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+ol li {
+  background-color: #eaf2f8;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+ol li:hover {
+  transform: translateY(-2px);
+}
+
+ol li  {
+  text-decoration: none;
+  color: #0073e6;
+  font-weight: bold;
+  display: block;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+ol li :hover {
+  color: red;
+}
+
+/* No Flights Available Message */
+
+
+/* Media Query for Mobile Responsiveness */
+@media (max-width: 768px) {
+  ol li {
+    padding: 10px;
+    font-size: 16px;
+  }
+}
